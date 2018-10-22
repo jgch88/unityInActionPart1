@@ -18,7 +18,11 @@ public class MouseLook : MonoBehaviour {
 	private float _rotationX = 0;
 
 	void Start () {
-		
+		// Prevent physics engine from messing with the player's rotation
+		// 'freeze' it and let the mouse do the job
+		Rigidbody body = GetComponent<Rigidbody> ();
+		if (body != null)
+			body.freezeRotation = true;
 	}
 	
 	// Update is called once per frame
@@ -44,6 +48,14 @@ public class MouseLook : MonoBehaviour {
 			// the alternative is to use localRotation which uses quaternion notation...
 			transform.localEulerAngles = new Vector3 (_rotationX, rotationY, 0); // transform's vector is read only make a new Vector
 		} else {
+			_rotationX -= Input.GetAxis ("Mouse Y") * sensitivityVerticalAngle;
+			_rotationX = Mathf.Clamp (_rotationX, minimumVerticalAngle, maximumVerticalAngle);
+
+			float deltaY = Input.GetAxis ("Mouse X") * sensitivityHorizontalAngle;
+			float rotationY = transform.localEulerAngles.y + deltaY;
+
+			transform.localEulerAngles = new Vector3 (_rotationX, rotationY, 0);
+
 		}
 	}
 }

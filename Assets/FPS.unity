@@ -981,7 +981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9eec110d1f1eea439a72a1f43f0b657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axes: 2
+  axes: 0
   sensitivityHorizontalAngle: 9
   sensitivityVerticalAngle: 9
   minimumVerticalAngle: -89
