@@ -12,6 +12,8 @@ public class Spin : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		// Space.Self follows rotation about the object's own axis
+		// Space.World follows rotation about the non rotated world's fixed axis
 		transform.Rotate (0, speed, 0);
 	}
 }
