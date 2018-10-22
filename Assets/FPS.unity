@@ -981,8 +981,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9eec110d1f1eea439a72a1f43f0b657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axes: 1
-  sensitivtyHorizontal: 9
+  axes: 2
+  sensitivityHorizontalAngle: 9
+  sensitivityVerticalAngle: 9
+  minimumVerticalAngle: -89
+  maximumVerticalAngle: 89
 --- !u!1 &1280624048
 GameObject:
   m_ObjectHideFlags: 0
