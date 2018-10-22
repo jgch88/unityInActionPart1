@@ -982,7 +982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9eec110d1f1eea439a72a1f43f0b657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axes: 0
+  axes: 1
   sensitivityHorizontalAngle: 9
   sensitivityVerticalAngle: 9
   minimumVerticalAngle: -89
@@ -999,6 +999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
+  gravity: -9.8
 --- !u!1 &1280624048
 GameObject:
   m_ObjectHideFlags: 0
@@ -1075,6 +1076,7 @@ GameObject:
   - component: {fileID: 1798616061}
   - component: {fileID: 1798616060}
   - component: {fileID: 1798616059}
+  - component: {fileID: 1798616063}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1145,6 +1147,22 @@ Transform:
   m_Father: {fileID: 1184930720}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1798616063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1798616058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9eec110d1f1eea439a72a1f43f0b657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axes: 2
+  sensitivityHorizontalAngle: 9
+  sensitivityVerticalAngle: 9
+  minimumVerticalAngle: -89
+  maximumVerticalAngle: 89
 --- !u!1 &1822258433
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,6 +27,11 @@ public class MouseLook : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		// Section 2.5.4: The reason why we split MouseX and MouseY is because we want X to control the Player object and Y to control
+		// the Camera object separately. 
+		// We want gravity to affect the Player body downwards so we don't want the player's pitch to change.
+
 		if (axes == RotationAxes.MouseX) {
 			// Unity Input API
 			// https://docs.unity3d.com/ScriptReference/Input.GetAxis.html
