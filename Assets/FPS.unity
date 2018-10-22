@@ -891,6 +891,7 @@ GameObject:
   - component: {fileID: 1184930718}
   - component: {fileID: 1184930717}
   - component: {fileID: 1184930721}
+  - component: {fileID: 1184930722}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -986,6 +987,18 @@ MonoBehaviour:
   sensitivityVerticalAngle: 9
   minimumVerticalAngle: -89
   maximumVerticalAngle: 89
+--- !u!114 &1184930722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1184930716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6802c19b575881a45917ed6f07425e03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 6
 --- !u!1 &1280624048
 GameObject:
   m_ObjectHideFlags: 0

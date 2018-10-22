@@ -51,6 +51,7 @@ public class MouseLook : MonoBehaviour {
 			_rotationX -= Input.GetAxis ("Mouse Y") * sensitivityVerticalAngle;
 			_rotationX = Mathf.Clamp (_rotationX, minimumVerticalAngle, maximumVerticalAngle);
 
+			// notice the inversion of axes? mouseX (left to right mouse movement) changes angle around the player's Y axis!
 			float deltaY = Input.GetAxis ("Mouse X") * sensitivityHorizontalAngle;
 			float rotationY = transform.localEulerAngles.y + deltaY;
 
