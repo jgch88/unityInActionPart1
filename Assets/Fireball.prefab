@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33968196424693858}
   - component: {fileID: 135893811758349038}
   - component: {fileID: 23954866267423260}
+  - component: {fileID: 114467283723711906}
   m_Layer: 0
   m_Name: Fireball
   m_TagString: Untagged
@@ -36,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1119267365927188}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.14543676, y: 2.510191, z: -2.203858}
+  m_LocalPosition: {x: 1.682343, y: 2.4740043, z: -3.4999998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,6 +84,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1119267365927188}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114467283723711906
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1119267365927188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0ef155934e81fa42adef105cc1de48d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  damage: 1
 --- !u!135 &135893811758349038
 SphereCollider:
   m_ObjectHideFlags: 1
