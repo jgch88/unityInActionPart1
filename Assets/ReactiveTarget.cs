@@ -6,6 +6,13 @@ public class ReactiveTarget : MonoBehaviour {
 
 	// method called in RayShooter : target.ReactToHit();
 	public void ReactToHit() {
+
+		// <WanderingAIBehaviour> is our defined script/component datatype for behaviour
+		// similar to <ReactiveTarget>
+		WanderingAIBehaviour behavior = GetComponent<WanderingAIBehaviour> ();
+		if (behavior != null) {
+			behavior.SetAlive (false);
+		}
 		StartCoroutine (Die ());
 	}
 
