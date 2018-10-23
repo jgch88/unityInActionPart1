@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class ReactiveTarget : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+	// method called in RayShooter : target.ReactToHit();
+	public void ReactToHit() {
+		StartCoroutine (Die ());
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	// Coroutine
+	private IEnumerator Die() {
+		this.transform.Rotate (-75, 0, 0); // check out "tweens" to make smooth object animation
+
+		yield return new WaitForSeconds (2);
+
+		// the "this" keyword is optional...
+		// "this" refers to only the script component
+		// "this.gameObject" refers to the object this script is attached to.
+		// Destroy the gameObject, not "this"!
+		Destroy (this.gameObject);
 	}
+		
 }

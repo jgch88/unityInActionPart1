@@ -44,6 +44,7 @@ public class RayShooter : MonoBehaviour {
 				// we could also do hitObject.GetComponent<KeyboardMovement> or GetComponent<MouseLook> which was done in Section 2
 				if (target != null) {
 					Debug.Log ("Target Hit: " + hit.point);
+					target.ReactToHit (); // calling method on the target, which we need to define in <ReactiveTarget> script
 				} else {
 					StartCoroutine (ShowHitLocationUsingSphere (hit.point));
 				}
