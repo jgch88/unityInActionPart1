@@ -37,8 +37,16 @@ public class RayShooter : MonoBehaviour {
 
 			// the out in the argument is like C++ passing in by reference, as opposed to copying it into scope?
 			if (Physics.Raycast (ray, out hit)) {
-				Debug.Log ("Hit " + hit.point);
-				StartCoroutine (ShowHitLocationUsingSphere (hit.point));
+				GameObject hitObject = hit.transform.gameObject; // retrieve the object that ray hit
+				ReactiveTarget target = hitObject.GetComponent<ReactiveTarget>(); // This is because we created our own C# ReactiveTarget script
+				// this method checks that the object has this Component/Script attached to it, else returns null
+				// elif / switch issues come to mind when you have multiple script detection (probably has an elegant design pattern to solve this)
+				// we could also do hitObject.GetComponent<KeyboardMovement> or GetComponent<MouseLook> which was done in Section 2
+				if (target != null) {
+					Debug.Log ("Target Hit: " + hit.point);
+				} else {
+					StartCoroutine (ShowHitLocationUsingSphere (hit.point));
+				}
 			} // else if Physics.Raycast returns false, it didn't hit any object (e.g. it hit the "sky")
 		}
 	}
