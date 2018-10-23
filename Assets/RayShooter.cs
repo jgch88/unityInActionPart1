@@ -7,6 +7,23 @@ public class RayShooter : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		_camera = GetComponent<Camera> ();
+
+		// Hide the mouse at the center of the screen
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
+	}
+
+	// Use Basic UI (unity also has advanced UI)
+	// OnGUI() is a MonoBehaviour built in method
+	// runs every frame right after 3D scene is rendered, 
+	// so it appears like something is in between the 3D scene
+	// and the camera (or on top of the 3D scene)
+	void OnGUI() {
+		int size = 12; // This is the size of the Rect, not the text size
+		float posX = _camera.pixelWidth / 2 - size / 4;
+		float posY = _camera.pixelHeight / 2 - size / 2;
+		// drawing a crosshair using a text label
+		GUI.Label (new Rect (posX, posY, size, size), "*");
 	}
 	
 	// Update is called once per frame
@@ -21,7 +38,28 @@ public class RayShooter : MonoBehaviour {
 			// the out in the argument is like C++ passing in by reference, as opposed to copying it into scope?
 			if (Physics.Raycast (ray, out hit)) {
 				Debug.Log ("Hit " + hit.point);
+				StartCoroutine (ShowHitLocationUsingSphere (hit.point));
 			} // else if Physics.Raycast returns false, it didn't hit any object (e.g. it hit the "sky")
 		}
 	}
+
+	// IEnumerator is a Coroutine data type
+	private IEnumerator ShowHitLocationUsingSphere(Vector3 pos) {
+		GameObject sphere = GameObject.CreatePrimitive (PrimitiveType.Sphere);
+		sphere.transform.position = pos;
+
+		// yield tells coroutine where to pause
+		// this is really interesting syntax, returning (to prevent blocking) and also not needing
+		// a callback function for a timer
+		yield return new WaitForSeconds (1);
+		// Coroutines aren't asynchronous -> they hand back program flow but pick it up again from that point in the
+		// next frame, so they seem to run in the background of a program through
+		// a repeated cycle of running PARTWAY (I guess WaitForSeconds(1) splits this out over several frames)
+		// then returning to the rest of the program.
+		// e.g. for 60 FPS, line 37 is executed 60 times, before line 44... probably some sort of timeDelta thing going on.
+
+		// really high level abstraction: this is just a backgroundWait(1)
+		Destroy (sphere);
+	}
+
 }
