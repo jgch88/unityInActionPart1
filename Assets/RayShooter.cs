@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems; // for GUI framework
 
 public class RayShooter : MonoBehaviour {
 	private Camera _camera;
@@ -8,9 +9,9 @@ public class RayShooter : MonoBehaviour {
 	void Start () {
 		_camera = GetComponent<Camera> ();
 
-		// Hide the mouse at the center of the screen
-		Cursor.lockState = CursorLockMode.Locked;
-		Cursor.visible = false;
+		// Hide the mouse at the center of the screen (removed for GUI purposes)
+		// Cursor.lockState = CursorLockMode.Locked;
+		// Cursor.visible = false;
 	}
 
 	// Use Basic UI (unity also has advanced UI)
@@ -28,7 +29,8 @@ public class RayShooter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetMouseButtonDown (0)) {
+		// Check that we aren't clicking on a GUI object (prevent shooting while interacting with GUI)
+		if (Input.GetMouseButtonDown (0) && !EventSystem.current.IsPointerOverGameObject()) {
 			Vector3 screenCenterPoint = new Vector3 (_camera.pixelWidth / 2, _camera.pixelHeight / 2);
 			// create ray from center of the camera screen
 			Ray ray = _camera.ScreenPointToRay (screenCenterPoint);
