@@ -47,6 +47,7 @@ public class RayShooter : MonoBehaviour {
 				if (target != null) {
 					Debug.Log ("Target Hit: " + hit.point);
 					target.ReactToHit (); // calling method on the target, which we need to define in <ReactiveTarget> script
+					Messenger.Broadcast(GameEvent.ENEMY_HIT); // broadcast
 				} else {
 					StartCoroutine (ShowHitLocationUsingSphere (hit.point));
 				}

@@ -9,6 +9,21 @@ public class WanderingAIBehaviour : MonoBehaviour {
 	public float obstacleRange = 0.5f;
 	private GameObject _fireball;
 
+	public const float baseSpeed = 3.0f;
+
+	void Awake() {
+		// the method OnSpeedChanged has a value, so Messenger<float> is used
+		Messenger<float>.AddListener (GameEvent.SPEED_CHANGED, OnSpeedChanged);
+	}
+
+	void OnDestroy() {
+		Messenger<float>.RemoveListener (GameEvent.SPEED_CHANGED, OnSpeedChanged);
+	}
+
+	private void OnSpeedChanged(float value) {
+		speed = baseSpeed * value;
+	}
+
 	// We need this variable to prevent AI from moving when it's "dead"
 	private bool _isAlive; // we should use Finite State Machines (or state design pattern) rather than
 	// a huge bunch of if/else statements
