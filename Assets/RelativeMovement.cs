@@ -22,9 +22,13 @@ public class RelativeMovement : MonoBehaviour {
 	// sliding when not directly on flat ground
 	private ControllerColliderHit _contact;
 
+	// animation
+	private Animator _animator;
+
 	void Start () {
 		_charController = GetComponent<CharacterController> ();
 		_vertSpeed = minFall;
+		_animator = GetComponent<Animator> ();
 	}
 
 	void Update () {
@@ -51,6 +55,9 @@ public class RelativeMovement : MonoBehaviour {
 
 		}
 
+		// for animation transitions
+		_animator.SetFloat ("speed", movement.sqrMagnitude);
+
 		// raycast a short distance down to check that player is "on flat ground"
 		// and not floating off a ledge/standing on a very steep slope
 		bool hitGround = false;
@@ -71,11 +78,18 @@ public class RelativeMovement : MonoBehaviour {
 				// pressing downward while running
 				// this is crucial for running up and down uneven terrain
 				_vertSpeed = minFall;
+				_animator.SetBool ("jumping", false);
 			}
 		} else {
 			_vertSpeed += gravity * 5 * Time.deltaTime;
 			if (_vertSpeed < terminalVelocity) {
 				_vertSpeed = terminalVelocity;
+			}
+
+			// without this the player will bug out and not have a jumping animation.
+			// there won't be collision data until the player touches the ground for the first time.
+			if (_contact != null) {
+				_animator.SetBool ("jumping", true);
 			}
 
 			// nudge the character to slide down ledges/steep faces
