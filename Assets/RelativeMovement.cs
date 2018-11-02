@@ -25,6 +25,9 @@ public class RelativeMovement : MonoBehaviour {
 	// animation
 	private Animator _animator;
 
+	// pushing a stack of rigidbody boxes
+	public float pushForce = 3.0f;
+
 	void Start () {
 		_charController = GetComponent<CharacterController> ();
 		_vertSpeed = minFall;
@@ -109,5 +112,10 @@ public class RelativeMovement : MonoBehaviour {
 
 	void OnControllerColliderHit(ControllerColliderHit hit) {
 		_contact = hit;
+
+		Rigidbody body = hit.collider.attachedRigidbody;
+		if (body != null && !body.isKinematic) {
+			body.velocity = hit.moveDirection * pushForce;
+		}
 	}
 }
